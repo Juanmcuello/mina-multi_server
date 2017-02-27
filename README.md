@@ -3,7 +3,7 @@ Mina Multi Server
 
 This is an extremely simple gem that adds multi-server support to Mina tasks. In
 order to avoid complexity, each task is executed **sequentially**. You should
-look to other solutions if you need parallel execution.
+look at other solutions if you need parallel execution.
 
 ## Installation
 
