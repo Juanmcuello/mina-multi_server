@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/Juanmcuello/mina-multi_server'
   s.license  = 'MIT'
   s.name     = 'mina-multi_server'
-  s.summary  = 'Mina multi-server deploys'
+  s.summary  = 'Mina multi-server support'
   s.version  = '0.0.1'
 
   s.add_dependency 'mina', '~> 1.0'
