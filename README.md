@@ -1,9 +1,11 @@
 Mina Multi Server
 ====
 
-This is an extremely simple gem that adds multi-server support to Mina tasks. In
-order to avoid complexity, each task is executed **sequentially**. You should
-look at other solutions if you need parallel execution.
+This is an extremely simple gem that adds multi-server support to [Mina][mina]
+tasks. In order to avoid complexity, each task is executed **sequentially**. You
+should look at other solutions if you need parallel execution.
+
+[mina]: https://github.com/mina-deploy/mina
 
 ## Installation
 
@@ -11,7 +13,7 @@ gem install mina-multi_server
 
 ## Usage
 
-Set a `server` array in your deploy.rb with the hostnames of the servers where
+Set a `servers` array in your deploy.rb with the hostnames of the servers where
 you want the tasks to be executed.
 
 When using `mina-multi_server`, there is no need to set a `domain` var as Mina
