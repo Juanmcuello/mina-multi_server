@@ -12,9 +12,15 @@ module Mina
       ensure!(:servers)
       fetch(:servers).each do |server|
         print_stdout "Server: #{server}"
-        set(:domain, server)
-        yield
+        on_domain(server) { yield }
       end
+    end
+
+    def on_domain(domain)
+      prev_domain = ENV['domain']
+      ENV['domain'] = domain
+      yield
+      ENV['domain'] = prev_domain
     end
   end
 end
