@@ -39,10 +39,15 @@ $ mina production deploy
 
 ## How it works
 
-Each remote task will be executed for each server, setting Mina's `domain` var
-to each value of the `servers` array.
+Each remote task will be executed for each server of `servers` array, setting
+`ENV['domain']` to each server. Mina [checks][checks] ENV[`domain`] when fetching the
+`domain` to use by the task. Using the `ENV` keeps the `domain` var of Mina
+untouched, so you can still use it for other task (such as `ssh`). In addition,
+`ENV['domain']` is also restored to its previous value in case it was set.
 
-For non-remote tasks, each task will be executed only once, `servers` var will
-not be used and no `domain` var will be set.
+For non-remote tasks, each task will be executed only once and `servers` var
+will not be used.
 
 Tasks will be executed one after the other, sequentially.
+
+[checks]: https://github.com/mina-deploy/mina/blob/master/lib/mina/configuration.rb#L27
