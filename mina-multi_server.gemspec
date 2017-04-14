@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.name     = 'mina-multi_server'
   s.require_paths = ['lib', 'tasks']
   s.summary  = 'Mina multi-server support'
-  s.version  = '0.0.2'
+  s.version  = '0.0.3'
 
   s.add_dependency 'mina', '~> 1.0'
 end
