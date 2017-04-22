@@ -13,11 +13,9 @@ gem install mina-multi_server
 
 ## Usage
 
-Set a `servers` array in your deploy.rb with the hostnames of the servers where
-you want the tasks to be executed on.
-
 When using `mina-multi_server`, there is no need to set a `domain` var as Mina
-requires.
+requires, just set a `servers` array in your deploy.rb with the hostnames of the
+servers where you want the tasks to be executed on.
 
 
 ```ruby
@@ -25,16 +23,14 @@ requires.
 
 require 'mina/multi_server'
 
-task :production do
-  set :servers, ['server-1.example.com', 'server-2.example.com']
-end
+set :servers, ['server-1.example.com', 'server-2.example.com']
 
 # ...
 
 ```
 
 ```console
-$ mina production deploy
+$ mina deploy
 ```
 
 ## How it works
@@ -64,15 +60,13 @@ You will also need to require `mina/multi_server/select` in your deploy.rb.
 require 'mina/multi_server'
 require 'mina/multi_server/select'
 
-task :production do
-  set :servers, ['server-1.example.com', 'server-2.example.com']
-end
+set :servers, ['server-1.example.com', 'server-2.example.com']
 
 # ...
 ```
 
 ```
-$ mina production select ssh
+$ mina select ssh
 
 Select server:
 1. server-1.example.com
@@ -82,3 +76,36 @@ Select server:
 After you select an option, the `domain` var that Mina uses will be set to the
 selected server. In addition, the `servers` array will be reduced to a
 single-item array including only the selected server.
+
+## Multi-stage (production, staging)
+
+Multistage deploys can be achieved using a task for setting the servers array
+before executing the main task.
+
+```ruby
+# deploy.rb
+
+require 'mina/multi_server'
+
+task :production
+  set :servers, ['server-1.example.com', 'server-2.example.com']
+end
+
+task :staging
+  set :servers, ['staging.example.com']
+end
+
+# ...
+```
+
+```
+$ mina production deploy
+```
+
+This will deploy to `server-1.example.com` and `server-2.example.com`.
+
+```
+$ mina staging deploy
+```
+
+This will deploy only to `staging.example.com`.
